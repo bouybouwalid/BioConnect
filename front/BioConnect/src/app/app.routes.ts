@@ -17,6 +17,8 @@ import { BlogComponent } from './components/blog/blog.component';
 import { ArticleDetailsComponent } from './components/article-details/article-details.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AssociationListComponent } from './components/associations/association-list/association-list.component';
+import { AssociationDetailsComponent } from './components/associations/association-details/association-details.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -35,5 +37,8 @@ export const routes: Routes = [
   { path: 'blog', component: BlogComponent },
   { path: 'articles/:id', component: ArticleDetailsComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'associations', component: AssociationListComponent },
+  { path: 'associations/:id', component: AssociationDetailsComponent },
   { path: '**', component: NotFoundComponent },
+
 ];

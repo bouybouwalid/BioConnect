@@ -1,0 +1,27 @@
+.footer {
+    border-top: 1px solid #eaeaea;
+    background-color: #f8f9fa; /* Couleur de fond claire */
+  }
+  
+  .footer h5 {
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .footer a {
+    text-decoration: none;
+  }
+  
+  .footer a:hover {
+    color: #28a745; /* Couleur verte pour refléter le thème bio */
+  }
+  
+  .footer .bi {
+    font-size: 1.5rem;
+    color: #555;
+  }
+  
+  .footer .bi:hover {
+    color: #28a745;
+  }
+  
