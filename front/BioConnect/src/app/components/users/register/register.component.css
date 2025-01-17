@@ -1,0 +1,33 @@
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f9fa; /* Couleur de fond claire */
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    background-color: #ffffff;
+  }
+  
+  .logo {
+    width: 120px;
+    height: auto;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    border: none;
+  }
+  
+  .btn-success:hover {
+    background-color: #218838;
+  }
+  
+  .text-danger {
+    font-size: 0.875rem;
+  }
+  

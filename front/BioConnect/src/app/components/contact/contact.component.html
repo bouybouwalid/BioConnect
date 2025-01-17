@@ -1,1 +1,82 @@
-<p>contact works!</p>
+<div class="contact-container">
+    <div class="card shadow-lg p-4">
+      <div class="text-center">
+        <!-- Titre et sous-titre -->
+        <h2 class="text-success">Contactez-nous</h2>
+        <p class="text-muted">Une question ? Besoin d'aide ? Remplissez le formulaire ci-dessous.</p>
+      </div>
+      <hr />
+  
+      <!-- Formulaire de contact -->
+      <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+        <!-- Nom complet -->
+        <div class="mb-3">
+          <label for="fullName" class="form-label">Nom complet</label>
+          <input
+            type="text"
+            id="fullName"
+            class="form-control"
+            placeholder="Entrez votre nom complet"
+            required
+            [(ngModel)]="contactData.fullName"
+            name="fullName"
+            #fullName="ngModel"
+          />
+          <div *ngIf="fullName.invalid && fullName.touched" class="text-danger">
+            Le nom complet est requis.
+          </div>
+        </div>
+  
+        <!-- Adresse e-mail -->
+        <div class="mb-3">
+          <label for="email" class="form-label">Adresse e-mail</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            placeholder="Entrez votre adresse e-mail"
+            required
+            [(ngModel)]="contactData.email"
+            name="email"
+            #email="ngModel"
+          />
+          <div *ngIf="email.invalid && email.touched" class="text-danger">
+            Une adresse e-mail valide est requise.
+          </div>
+        </div>
+  
+        <!-- Message -->
+        <div class="mb-3">
+          <label for="message" class="form-label">Message</label>
+          <textarea
+            id="message"
+            rows="5"
+            class="form-control"
+            placeholder="Écrivez votre message ici"
+            required
+            [(ngModel)]="contactData.message"
+            name="message"
+            #message="ngModel"
+          ></textarea>
+          <div *ngIf="message.invalid && message.touched" class="text-danger">
+            Le message est requis.
+          </div>
+        </div>
+  
+        <!-- Bouton d'envoi -->
+        <button type="submit" class="btn btn-success w-100" [disabled]="contactForm.invalid">
+          Envoyer le message
+        </button>
+      </form>
+    </div>
+  
+    <!-- Section coordonnées -->
+    <div class="text-center mt-5">
+      <h3 class="text-success">Nos coordonnées</h3>
+      <p class="text-muted">Vous pouvez également nous contacter via :</p>
+      <p><i class="bi bi-envelope"></i> contactbioconnect.com</p>
+      <p><i class="bi bi-telephone"></i> +33 1 23 45 67 89</p>
+      <p><i class="bi bi-geo-alt"></i> 16 Avenue de Collegno, 33400 Talence, France</p>
+    </div>
+  </div>
+  

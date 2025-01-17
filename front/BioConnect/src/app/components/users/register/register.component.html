@@ -1,1 +1,79 @@
-<p>register works!</p>
+<div class="register-container">
+    <div class="card shadow-lg p-4">
+      <div class="text-center">
+        <!-- Logo -->
+        <img src="../../../../assets/logo-bioconnect.png" alt="Logo BioConnect" class="logo mb-3" />
+        <h2 class="text-success">Créer un compte BioConnect</h2>
+        <p class="text-muted">Rejoignez-nous pour découvrir les produits bio locaux et plus encore.</p>
+      </div>
+      <hr />
+  
+      <!-- Formulaire d'inscription -->
+      <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+        <!-- Nom complet -->
+        <div class="mb-3">
+          <label for="fullName" class="form-label">Nom complet</label>
+          <input
+            type="text"
+            id="fullName"
+            class="form-control"
+            placeholder="Entrez votre nom complet"
+            required
+            [(ngModel)]="registerData.fullName"
+            name="fullName"
+            #fullName="ngModel"
+          />
+          <div *ngIf="fullName.invalid && fullName.touched" class="text-danger">
+            Le nom complet est requis.
+          </div>
+        </div>
+  
+        <!-- Adresse e-mail -->
+        <div class="mb-3">
+          <label for="email" class="form-label">Adresse e-mail</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            placeholder="Entrez votre adresse e-mail"
+            required
+            [(ngModel)]="registerData.email"
+            name="email"
+            #email="ngModel"
+          />
+          <div *ngIf="email.invalid && email.touched" class="text-danger">
+            Une adresse e-mail valide est requise.
+          </div>
+        </div>
+  
+        <!-- Mot de passe -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Mot de passe</label>
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            placeholder="Choisissez un mot de passe"
+            required
+            [(ngModel)]="registerData.password"
+            name="password"
+            #password="ngModel"
+          />
+          <div *ngIf="password.invalid && password.touched" class="text-danger">
+            Le mot de passe est requis.
+          </div>
+        </div>
+  
+        <!-- Bouton d'inscription -->
+        <button type="submit" class="btn btn-success w-100" [disabled]="registerForm.invalid">
+          Créer un compte
+        </button>
+      </form>
+  
+      <!-- Redirection vers Connexion -->
+      <div class="text-center mt-3">
+        <p>Déjà inscrit ? <a routerLink="/login" class="text-success">Connectez-vous ici</a></p>
+      </div>
+    </div>
+  </div>
+  

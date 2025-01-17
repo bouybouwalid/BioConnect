@@ -1,1 +1,57 @@
-<p>login works!</p>
+<div class="login-container">
+    <div class="card shadow-lg p-4">
+      <div class="text-center">
+        <!-- Logo -->
+        <img src="assets/logo-bioconnect.png" alt="Logo BioConnect" class="logo mb-3" />
+        <h2 class="text-success">Connexion à BioConnect</h2>
+      </div>
+      <hr />
+  
+      <!-- Formulaire -->
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <div class="mb-3">
+          <label for="email" class="form-label">Adresse e-mail</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            placeholder="Entrez votre adresse e-mail"
+            required
+            [(ngModel)]="loginData.email"
+            name="email"
+            #email="ngModel"
+          />
+          <div *ngIf="email.invalid && email.touched" class="text-danger">
+            Une adresse e-mail valide est requise.
+          </div>
+        </div>
+  
+        <div class="mb-3">
+          <label for="password" class="form-label">Mot de passe</label>
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            placeholder="Entrez votre mot de passe"
+            required
+            [(ngModel)]="loginData.password"
+            name="password"
+            #password="ngModel"
+          />
+          <div *ngIf="password.invalid && password.touched" class="text-danger">
+            Le mot de passe est requis.
+          </div>
+        </div>
+  
+        <button type="submit" class="btn btn-success w-100" [disabled]="loginForm.invalid">
+          Connexion
+        </button>
+      </form>
+  
+      <!-- Lien vers inscription -->
+      <div class="text-center mt-3">
+        <p>Pas encore inscrit ? <a routerLink="/register" class="text-success">Créer un compte</a></p>
+      </div>
+    </div>
+  </div>
+  

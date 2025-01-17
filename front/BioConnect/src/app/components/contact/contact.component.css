@@ -1,0 +1,57 @@
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+  }
+  
+  /* Card Styling */
+  .card {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    background-color: #ffffff;
+  }
+  
+  .card .btn-success {
+    background-color: #28a745;
+    border: none;
+  }
+  
+  .card .btn-success:hover {
+    background-color: #218838;
+  }
+  
+  /* Text Styling */
+  .text-success {
+    font-weight: bold;
+  }
+  
+  .text-danger {
+    font-size: 0.875rem;
+    color: #dc3545;
+  }
+  
+  .text-muted {
+    font-size: 0.9rem;
+    color: #6c757d !important;
+  }
+  
+  /* Contact Details */
+  .text-center h3 {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+  }
+  
+  .text-center p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+  
+  .text-center i {
+    margin-right: 0.5rem;
+    color: #28a745;
+  }
+  

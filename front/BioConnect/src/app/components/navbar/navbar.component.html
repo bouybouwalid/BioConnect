@@ -1,56 +1,61 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <!-- Nom de la plateforme -->
-      <a class="navbar-brand" routerLink="/">BioConnect</a>
-  
-      <!-- Bouton pour mobile -->
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-  
-      <!-- Liens de navigation -->
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/" routerLinkActive="active">Accueil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/products" routerLinkActive="active">Produits</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/events" routerLinkActive="active">Événements</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/blog" routerLinkActive="active">Blog</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
-          </li>
-        </ul>
-        <!-- Actions utilisateur -->
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/login" routerLinkActive="active">Connexion</a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link btn btn-primary text-white"
-              routerLink="/register"
-              routerLinkActive="active"
-            >
-              Inscription
-            </a>
-          </li>
-        </ul>
-      </div>
+  <div class="container-fluid">
+    <!-- Logo et nom de la plateforme -->
+    <a class="navbar-brand d-flex align-items-center" routerLink="/">
+      <img src="assets/logo.png"  class="logo me-2" />
+      <span>BioConnect</span>
+    </a>
+
+    <!-- Bouton pour mobile -->
+    <button
+      class="navbar-toggler custom-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Liens de navigation -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/products" routerLinkActive="active">Produits</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/events" routerLinkActive="active">Événements</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/blog" routerLinkActive="active">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/associations" routerLinkActive="active">Associations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
+        </li>
+      </ul>
+      <!-- Actions utilisateur -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" routerLinkActive="active">Connexion</a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link btn btn-primary text-white"
+            routerLink="/register"
+            routerLinkActive="active"
+          >
+            Inscription
+          </a>
+        </li>
+      </ul>
     </div>
-  </nav>
-  
+  </div>
+</nav>

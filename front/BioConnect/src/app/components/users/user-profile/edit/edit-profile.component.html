@@ -1,0 +1,23 @@
+<div class="container mt-5">
+  <h2 class="text-success text-center">Modifier mon profil</h2>
+
+  <form class="profile-form mt-4" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Nom complet</label>
+      <input type="text" id="name" class="form-control" [(ngModel)]="user.name" name="name" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" id="email" class="form-control" [(ngModel)]="user.email" name="email" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="phone" class="form-label">Téléphone</label>
+      <input type="text" id="phone" class="form-control" [(ngModel)]="user.phone" name="phone" required />
+    </div>
+
+    <button type="submit" class="btn btn-success me-2">Enregistrer</button>
+    <button type="button" class="btn btn-outline-secondary" routerLink="/profile">Annuler</button>
+  </form>
+</div>

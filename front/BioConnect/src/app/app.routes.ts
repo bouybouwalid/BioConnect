@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/users/login/login.component';
 import { RegisterComponent } from './components/users/register/register.component';
-import { ProfileComponent } from './components/users/profile/profile.component';
+import { UserProfileComponent } from './components/users/user-profile/user-profile.component';
 import { ProductListComponent } from './components/products/product-list/product-list.component';
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 import { ProductFormComponent } from './components/products/product-form/product-form.component';
@@ -19,12 +19,16 @@ import { ContactComponent } from './components/contact/contact.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AssociationListComponent } from './components/associations/association-list/association-list.component';
 import { AssociationDetailsComponent } from './components/associations/association-details/association-details.component';
+import { EditProfileComponent } from './components/users/user-profile/edit/edit-profile.component';
+import { UserOrdersComponent } from './components/orders/user-orders/user-orders.component';
+import { CreateComponent } from './components/associations/create/create.component';
+import { DashboardComponent } from './components/associations/dashboard/dashboard.component';
+import { OrdersComponent } from './components/associations/orders/orders.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
   { path: 'products', component: ProductListComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
   { path: 'products/new', component: ProductFormComponent },
@@ -39,6 +43,15 @@ export const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'associations', component: AssociationListComponent },
   { path: 'associations/:id', component: AssociationDetailsComponent },
+  { path: 'profile', component: UserProfileComponent }, // Profil utilisateur
+  { path: 'profile/edit-profile', component: EditProfileComponent }, // Modifier profil
+  { path: 'profile/orders', component: UserOrdersComponent }, // Historique des achats
+  { path: 'profile/associations/create', component: CreateComponent }, // Créer une association
+  { path: 'association/:id/dashboard', component: DashboardComponent }, // Tableau de bord d'une association
+  { path: 'association/:id/orders', component: OrdersComponent }, // Commandes d'une association
+
+  // Routes pour les superutilisateurs
+  { path: 'admin/dashboard', component: DashboardComponent }, // Tableau de bord admin
   { path: '**', component: NotFoundComponent },
 
 ];

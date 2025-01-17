@@ -1,0 +1,19 @@
+.container {
+    max-width: 600px;
+  }
+  
+  .profile-form {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .form-label {
+    font-weight: bold;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  
