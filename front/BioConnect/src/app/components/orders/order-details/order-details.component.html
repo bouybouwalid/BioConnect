@@ -1,1 +1,23 @@
-<p>order-details works!</p>
+<div class="container mt-5">
+    <h2 class="text-success text-center">Détails de la Commande #{{ order.id }}</h2>
+  
+    <p class="text-muted text-center">Passée le : {{ order.date | date }}</p>
+    <p class="text-muted text-center"><strong>Total :</strong> {{ order.total | currency:'EUR' }}</p>
+  
+    <hr />
+  
+    <div class="order-items">
+      <h3>Produits commandés</h3>
+      <div class="item-card" *ngFor="let item of order.items">
+        <p><strong>Produit :</strong> {{ item.name }}</p>
+        <p><strong>Prix unitaire :</strong> {{ item.price | currency:'EUR' }}</p>
+        <p><strong>Quantité :</strong> {{ item.quantity }}</p>
+        <p><strong>Sous-total :</strong> {{ item.price * item.quantity | currency:'EUR' }}</p>
+      </div>
+    </div>
+  
+    <hr />
+  
+    <button class="btn btn-outline-secondary" routerLink="/profile/orders">Retour à mes commandes</button>
+  </div>
+  

@@ -21,12 +21,15 @@ import { AssociationListComponent } from './components/associations/association-
 import { AssociationDetailsComponent } from './components/associations/association-details/association-details.component';
 import { EditProfileComponent } from './components/users/user-profile/edit/edit-profile.component';
 import { UserOrdersComponent } from './components/orders/user-orders/user-orders.component';
-import { CreateComponent } from './components/associations/create/create.component';
-import { DashboardComponent } from './components/associations/dashboard/dashboard.component';
+import { CreateAssociationComponent } from './components/associations/create/create-association.component';
+import { AssociationDashboardComponent } from './components/associations/dashboard/association-dashboard.component.component';
 import { OrdersComponent } from './components/associations/orders/orders.component';
+import { AdminComponent } from './components/users/admin/admin.component';
+import { AboutComponent } from './components/about/about.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'products', component: ProductListComponent },
@@ -46,12 +49,12 @@ export const routes: Routes = [
   { path: 'profile', component: UserProfileComponent }, // Profil utilisateur
   { path: 'profile/edit-profile', component: EditProfileComponent }, // Modifier profil
   { path: 'profile/orders', component: UserOrdersComponent }, // Historique des achats
-  { path: 'profile/associations/create', component: CreateComponent }, // Créer une association
-  { path: 'association/:id/dashboard', component: DashboardComponent }, // Tableau de bord d'une association
+  { path: 'profile/associations/create', component: CreateAssociationComponent }, // Créer une association
+  { path: 'association/:id/dashboard', component: AssociationDashboardComponent }, // Tableau de bord d'une association
   { path: 'association/:id/orders', component: OrdersComponent }, // Commandes d'une association
 
   // Routes pour les superutilisateurs
-  { path: 'admin/dashboard', component: DashboardComponent }, // Tableau de bord admin
+  { path: 'admin/dashboard', component: AdminComponent }, // Tableau de bord admin
   { path: '**', component: NotFoundComponent },
 
 ];

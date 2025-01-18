@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <h2 class="text-success text-center">Créer une Association</h2>
+  
+    <form class="association-form mt-4" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Nom de l'association</label>
+        <input type="text" id="name" class="form-control" [(ngModel)]="association.name" name="name" required />
+      </div>
+  
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          id="description"
+          class="form-control"
+          [(ngModel)]="association.description"
+          name="description"
+          rows="4"
+          required
+        ></textarea>
+      </div>
+  
+      <div class="mb-3">
+        <label for="location" class="form-label">Adresse</label>
+        <input type="text" id="location" class="form-control" [(ngModel)]="association.location" name="location" required />
+      </div>
+  
+      <button type="submit" class="btn btn-success me-2">Créer</button>
+      <button type="button" class="btn btn-outline-secondary" routerLink="/profile">Annuler</button>
+    </form>
+  </div>
+  

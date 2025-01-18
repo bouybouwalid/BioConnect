@@ -1,0 +1,72 @@
+.about-container {
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 20px;
+  }
+  
+  .hero-section {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+  
+  .hero-section .title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #28a745;
+  }
+  
+  .hero-section .subtitle {
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 10px;
+  }
+  
+  .about-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .about-card {
+    flex: 1 1 calc(33% - 20px);
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .about-card h3 {
+    font-size: 1.5rem;
+    color: #28a745;
+    margin: 15px 0;
+  }
+  
+  .about-card p,
+  .about-card ul {
+    color: #555;
+    font-size: 1rem;
+  }
+  
+  .about-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .about-card ul li {
+    margin: 8px 0;
+  }
+  
+  .about-card .icon {
+    font-size: 3rem;
+    color: #28a745;
+    margin-bottom: 10px;
+  }
+  
