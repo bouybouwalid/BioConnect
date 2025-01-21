@@ -1,20 +1,70 @@
 <div class="container mt-5">
-    <h2 class="text-success text-center">Tableau de bord - {{ association.name }}</h2>
-  
-    <p class="text-muted text-center">Adresse : {{ association.location }}</p>
-    <p class="text-muted text-center">Description : {{ association.description }}</p>
-  
-    <hr />
-  
-    <div class="orders-section">
-      <h3>Commandes des clients</h3>
-  
-      <div class="order-card" *ngFor="let order of orders">
-        <p><strong>Commande #{{ order.id }}</strong></p>
-        <p><strong>Client :</strong> {{ order.clientName }}</p>
-        <p><strong>Total :</strong> {{ order.total | currency:'EUR' }}</p>
-        <button class="btn btn-success btn-sm" (click)="validateOrder(order.id)">Valider la commande</button>
-      </div>
+  <h2 class="text-success text-center">Tableau de bord - {{ association.name }}</h2>
+
+  <p class="text-muted text-center">Adresse : {{ association.location }}</p>
+  <p class="text-muted text-center">Description : {{ association.description }}</p>
+
+  <hr />
+
+  <div class="text-center mb-4">
+    <button class="btn btn-primary me-2" (click)="openModal(productModal)">Ajouter un nouveau produit</button>
+    <button class="btn btn-secondary" (click)="openModal(eventModal)">Ajouter un nouvel événement</button>
+  </div>
+
+  <div class="orders-section">
+    <h3>Commandes des clients</h3>
+
+    <div class="order-card" *ngFor="let order of orders">
+      <p><strong>Commande #{{ order.id }}</strong></p>
+      <p><strong>Client :</strong> {{ order.clientName }}</p>
+      <p><strong>Total :</strong> {{ order.total | currency:'EUR' }}</p>
+      <button class="btn btn-success btn-sm" (click)="validateOrder(order.id)">Valider la commande</button>
     </div>
   </div>
-  
+
+  <!-- Modal pour ajouter un produit -->
+  <ng-template #productModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Ajouter un nouveau produit</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="addProduct()">
+        <div class="mb-3">
+          <label for="productName" class="form-label">Nom du produit</label>
+          <input type="text" class="form-control" id="productName" [(ngModel)]="newProduct.name" name="name" required>
+        </div>
+        <div class="mb-3">
+          <label for="productPrice" class="form-label">Prix</label>
+          <input type="number" class="form-control" id="productPrice" [(ngModel)]="newProduct.price" name="price" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+      </form>
+    </div>
+  </ng-template>
+
+  <!-- Modal pour ajouter un événement -->
+  <ng-template #eventModal let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Ajouter un nouvel événement</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="addEvent()">
+        <div class="mb-3">
+          <label for="eventName" class="form-label">Nom de l'événement</label>
+          <input type="text" class="form-control" id="eventName" [(ngModel)]="newEvent.name" name="name" required>
+        </div>
+        <div class="mb-3">
+          <label for="eventDate" class="form-label">Date</label>
+          <input type="date" class="form-control" id="eventDate" [(ngModel)]="newEvent.date" name="date" required>
+        </div>
+        <div class="mb-3">
+          <label for="eventLocation" class="form-label">Lieu</label>
+          <input type="text" class="form-control" id="eventLocation" [(ngModel)]="newEvent.location" name="location" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+      </form>
+    </div>
+  </ng-template>
+</div>

@@ -1,11 +1,13 @@
 .container {
     max-width: 1200px;
     margin: auto;
+    padding: 20px;
   }
   
   h2 {
     font-size: 2.5rem;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center;
   }
   
   .text-muted {
@@ -18,6 +20,7 @@
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
   }
   
   .event-card:hover {
@@ -34,15 +37,39 @@
   
   .card-title {
     color: #28a745;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
   }
   
   .card-text {
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-bottom: 10px;
   }
   
   .btn {
+    font-size: 1rem;
+  }
+  
+  /* Ajout de styles pour la fenêtre modale */
+  .modal-header {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .modal-title {
+    font-size: 1.5rem;
+  }
+  
+  .modal-body {
+    font-size: 1rem;
+  }
+  
+  .modal-footer .btn {
     font-size: 0.9rem;
   }
   
+  /* Espacement entre le contenu et le footer/navbar */
+  .content {
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }

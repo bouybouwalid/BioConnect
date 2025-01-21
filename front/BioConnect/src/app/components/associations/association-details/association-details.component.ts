@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   templateUrl: './association-details.component.html',
   styleUrls: ['./association-details.component.css'],
+  imports: [CommonModule]
 })
 export class AssociationDetailsComponent {
   association: any;

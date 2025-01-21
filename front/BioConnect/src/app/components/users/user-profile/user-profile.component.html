@@ -12,10 +12,35 @@
       <button class="btn btn-primary me-2" routerLink="/profile/edit-profile">Modifier mon profil</button>
       <button class="btn btn-outline-success me-2" routerLink="/profile/orders">Mes achats</button>
       <button class="btn btn-outline-primary" routerLink="/profile/associations/create">
+      
         Créer une association
       </button>
+      <button class="btn btn-outline-info" (click)="openModal(blogModal)">Ajouter un nouveau blog</button>
+
     </div>
-  
+    <ng-template #blogModal let-modal>
+      <div class="modal-header">
+        <h5 class="modal-title">Ajouter un nouveau blog</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="addBlog()">
+          <div class="mb-3">
+            <label for="blogTitle" class="form-label">Titre du blog</label>
+            <input type="text" class="form-control" id="blogTitle" [(ngModel)]="newBlog.title" name="title" required>
+          </div>
+          <div class="mb-3">
+            <label for="blogDomain" class="form-label">Domaine</label>
+            <input type="text" class="form-control" id="blogDomain" [(ngModel)]="newBlog.domain" name="domain" required>
+          </div>
+          <div class="mb-3">
+            <label for="blogText" class="form-label">Texte du blog</label>
+            <textarea class="form-control" id="blogText" [(ngModel)]="newBlog.text" name="text" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Ajouter</button>
+        </form>
+      </div>
+    </ng-template>
     <hr class="my-5" />
   
     <h3 class="text-success">Mes Associations</h3>

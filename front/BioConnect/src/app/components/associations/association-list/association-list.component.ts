@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
 @Component({
   selector: 'app-association-list',
   standalone: true,
   templateUrl: './association-list.component.html',
   styleUrls: ['./association-list.component.css'],
+  imports: [CommonModule, RouterModule] // Ajoutez CommonModule et RouterModule ici
 })
 export class AssociationListComponent {
   // Liste simulée des associations
