@@ -1,13 +1,13 @@
-package com.bioconnect.bioconnect_backend;
+package com.bioconnect.bioconnect;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BioconnectBackendApplication {
+public class BioconnectApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BioconnectBackendApplication.class, args);
+		SpringApplication.run(BioconnectApplication.class, args);
 	}
 
 }
