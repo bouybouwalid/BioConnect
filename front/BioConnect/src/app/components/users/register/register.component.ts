@@ -1,29 +1,37 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule], // Ajoutez CommonModule et FormsModule ici
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  // Données du formulaire
   registerData = {
-    fullName: '',
+    nom: '',
+    prenom: '',
     email: '',
-    password: '',
+    telephone: '',
+    motDePasse: ''
   };
 
-  // Méthode appelée lors de la soumission du formulaire
+  successMessage = '';
+  errorMessage = '';
+
+  constructor(private authService: AuthService) {}
+
   onSubmit() {
-    if (this.registerData.fullName && this.registerData.email && this.registerData.password) {
-      console.log('Tentative d\'inscription :', this.registerData);
-      // Logique d'inscription ici (par exemple, envoi au backend)
-    } else {
-      console.error('Formulaire invalide');
-    }
+    this.authService.register(this.registerData).subscribe(
+      response => {
+        this.successMessage = 'Registration successful!';
+      },
+      error => {
+        this.errorMessage = 'Registration failed!';
+      }
+    );
   }
 }

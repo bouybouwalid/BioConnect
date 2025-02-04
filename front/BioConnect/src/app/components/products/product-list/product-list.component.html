@@ -1,33 +1,54 @@
 <div class="product-list-container">
-    <div class="container">
-      <h2 class="text-success text-center mb-4">Liste des Produits</h2>
-      <div *ngFor="let category of groupedProducts | keyvalue" class="category-section">
-        <!-- Titre de la catégorie -->
-        <h3 class="text-success">{{ category.key }}</h3>
-        <div class="row">
-          <!-- Carte de produit -->
-          <div class="col-md-4 mb-4" *ngFor="let product of category.value">
-            <div class="card shadow-sm">
-              <img
-                [src]="product.imageUrl"
-                alt="Image du produit"
-                class="card-img-top product-image"
-              />
-              <div class="card-body">
-                <h5 class="card-title">{{ product.name }}</h5>
-                <p class="card-text">
-                  <strong>Association :</strong> {{ product.association }}
-                </p>
-                <p class="card-text text-success">
-                  <strong>Prix :</strong> {{ product.price | currency: 'EUR' }}
-                </p>
-                <button class="btn btn-outline-success w-100">Voir Détails</button>
-              </div>
+  <div class="container">
+    <h2 class="text-success text-center mb-4">Liste des Produits</h2>
+
+    <div *ngFor="let category of groupedProducts | keyvalue" class="category-section">
+      <h3 class="text-success">{{ category.key }}</h3>
+      <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let product of category.value">
+          <div class="card product-card">
+            <img
+              [src]="product.imageUrl || 'assets/products/default.jpg'"
+              alt="Image du produit"
+              class="card-img-top product-image"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ product.nom }}</h5>
+              <p class="card-text">
+                <strong>Association :</strong> {{ product.association?.nom }}
+              </p>
+              <p class="card-text text-success">
+                <strong>Prix :</strong> {{ product.prix | currency: 'EUR' }}
+              </p>
+              <button class="btn btn-outline-success w-100" (click)="openProductDetails(product)">
+                Voir Détails
+              </button>
+              <button class="btn btn-success w-100 mt-2">
+                Ajouter au panier
+              </button>
             </div>
           </div>
         </div>
-        <hr />
       </div>
+      <hr />
     </div>
   </div>
-  
+</div>
+
+<!-- POPUP (MODALE) -->
+<div *ngIf="selectedProduct" class="modal-overlay" (click)="closeProductDetails()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="closeProductDetails()">✖</button>
+    <h3 class="text-success">{{ selectedProduct.nom }}</h3>
+    <img
+      [src]="selectedProduct.imageUrl || 'assets/products/default.jpg'"
+      alt="Image du produit"
+      class="product-detail-image"
+    />
+    <p><strong>Association :</strong> {{ selectedProduct.association?.nom }}</p>
+    <p><strong>Catégorie :</strong> {{ selectedProduct.categorie?.nom }}</p>
+    <p><strong>Prix :</strong> {{ selectedProduct.prix | currency: 'EUR' }}</p>
+    <p><strong>Description :</strong> {{ selectedProduct.details }}</p>
+    <button class="btn btn-success w-100 mt-3">Ajouter au panier</button>
+  </div>
+</div>

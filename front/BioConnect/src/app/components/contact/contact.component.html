@@ -11,18 +11,18 @@
       <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
         <!-- Nom complet -->
         <div class="mb-3">
-          <label for="fullName" class="form-label">Nom complet</label>
+          <label for="nomComplet" class="form-label">Nom complet</label>
           <input
             type="text"
-            id="fullName"
+            id="nomComplet"
             class="form-control"
             placeholder="Entrez votre nom complet"
             required
-            [(ngModel)]="contactData.fullName"
-            name="fullName"
-            #fullName="ngModel"
+            [(ngModel)]="contactData.nomComplet"
+            name="nomComplet"
+            #nomComplet="ngModel"
           />
-          <div *ngIf="fullName.invalid && fullName.touched" class="text-danger">
+          <div *ngIf="nomComplet.invalid && nomComplet.touched" class="text-danger">
             Le nom complet est requis.
           </div>
         </div>

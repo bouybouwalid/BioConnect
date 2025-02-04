@@ -1,19 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-association-list',
   standalone: true,
   templateUrl: './association-list.component.html',
   styleUrls: ['./association-list.component.css'],
-  imports: [CommonModule, RouterModule] // Ajoutez CommonModule et RouterModule ici
+  imports: [CommonModule, RouterModule]
 })
-export class AssociationListComponent {
-  // Liste simulée des associations
-  associations = [
-    { id: 1, name: 'Association BioLocal', description: 'Promotion des produits bio locaux.' },
-    { id: 2, name: 'Green Earth', description: 'Soutenir une agriculture durable.' },
-    { id: 3, name: 'Nature et Saveurs', description: 'Produits bio issus de la région.' },
-  ];
+export class AssociationListComponent implements OnInit {
+  apiUrl = 'http://localhost:8080/api/associations'; // URL du backend
+  associations: any[] = []; // Tableau qui stocke les associations récupérées
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    this.loadAssociations();
+  }
+
+  loadAssociations() {
+    this.http.get<any[]>(this.apiUrl).subscribe(
+      (data) => {
+        this.associations = data;
+      },
+      (error) => {
+        console.error('Erreur lors du chargement des associations :', error);
+      }
+    );
+  }
 }

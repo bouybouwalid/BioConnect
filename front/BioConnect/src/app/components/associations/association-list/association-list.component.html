@@ -3,13 +3,16 @@
   <p class="text-muted">
     Voici une liste des associations qui soutiennent l'agriculture biologique dans la région.
   </p>
+
   <div class="row">
     <div class="col-md-4 mb-4" *ngFor="let association of associations">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">{{ association.name }}</h5>
+          <h5 class="card-title">{{ association.nom }}</h5>
           <p class="card-text">{{ association.description }}</p>
-          <a [routerLink]="['/associations', association.id]" class="btn btn-success">Voir détails</a>
+          <a [routerLink]="['/associations', association.id]" class="btn btn-success">
+            Voir détails
+          </a>
         </div>
       </div>
     </div>

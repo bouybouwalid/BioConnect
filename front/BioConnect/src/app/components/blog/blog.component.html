@@ -1,46 +1,38 @@
 <div class="container mt-5">
-    <h2 class="text-success text-center">Nos Blogs</h2>
-    <p class="text-muted text-center mb-4">
-      Découvrez nos derniers articles sur l'agriculture biologique, les produits locaux et les initiatives durables.
-    </p>
-  
-    <div class="row">
-      <div class="col-md-4 mb-4" *ngFor="let blog of blogs">
-        <div class="card blog-card">
-          <img [src]="blog.image" alt="{{ blog.title }}" class="card-img-top blog-image" />
-          <div class="card-body">
-            <h5 class="card-title">{{ blog.title }}</h5>
-            <p class="card-text text-muted">
-              <strong>Auteur :</strong> {{ blog.author }}
-            </p>
-            <p class="card-text">
-              {{ blog.excerpt | slice: 0:100 }}...
-            </p>
-            <button class="btn btn-outline-success btn-sm" (click)="openBlog(blog)">
-              Lire le blog
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    <!-- Fenêtre popup -->
-    <div class="modal" [ngClass]="{ 'show': showModal }" tabindex="-1" *ngIf="selectedBlog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">{{ selectedBlog.title }}</h5>
-            <button type="button" class="btn-close" (click)="closeModal()"></button>
-          </div>
-          <div class="modal-body">
-            <img [src]="selectedBlog.image" alt="{{ selectedBlog.title }}" class="modal-image mb-3" />
-            <p>{{ selectedBlog.content }}</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" (click)="closeModal()">Fermer</button>
-          </div>
+  <h2 class="text-success text-center">Nos Blogs</h2>
+  <p class="text-muted text-center mb-4">
+    Découvrez nos derniers articles sur l'agriculture biologique, les produits locaux et les initiatives durables.
+  </p>
+
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let blog of blogs">
+      <div class="card blog-card shadow-sm">
+        <img [src]="defaultImage" alt="Auteur" class="profile-image" />
+        <div class="card-body">
+          <h5 class="card-title">{{ blog.titre }}</h5>
+          <p class="card-text text-muted">
+            <strong>Auteur :</strong> {{ blog.auteur }}
+          </p>
+          <p class="card-text">
+            {{ blog.contenu | slice: 0:100 }}...
+          </p>
+          <button class="btn btn-outline-success btn-sm w-100" (click)="openBlog(blog)">
+            Lire le blog
+          </button>
         </div>
       </div>
     </div>
   </div>
-  
+
+  <!-- POPUP BLOG -->
+  <div *ngIf="showModal" class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="close-btn" (click)="closeModal()">✖</button>
+      <h3 class="text-success">{{ selectedBlog.titre }}</h3>
+      <p class="text-muted"><strong>Auteur :</strong> {{ selectedBlog.auteur }}</p>
+      <hr />
+      <p class="blog-content">{{ selectedBlog.contenu }}</p>
+      <button class="btn btn-outline-danger w-100 mt-3" (click)="closeModal()">Fermer</button>
+    </div>
+  </div>
+</div>

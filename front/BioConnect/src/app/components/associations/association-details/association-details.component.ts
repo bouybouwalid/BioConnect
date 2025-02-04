@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,28 +10,27 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./association-details.component.css'],
   imports: [CommonModule]
 })
-export class AssociationDetailsComponent {
-  association: any;
+export class AssociationDetailsComponent implements OnInit {
+  apiUrl = 'http://localhost:8080/api/associations';
+  association: any = null;
+  id: number = 0;
 
-  // Liste simulée pour démo
-  associations = [
-    {
-      id: 1,
-      name: 'Association BioLocal',
-      description: 'Promotion des produits bio locaux.',
-      products: [
-        { name: 'Tomates Bio', description: 'Cultivées sans pesticides.' },
-        { name: 'Pommes de Terre', description: 'Riches en goût.' },
-      ],
-      events: [
-        { name: 'Marché Bio', description: 'Marché mensuel des produits bio.' },
-      ],
-    },
-    // Autres associations...
-  ];
+  constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
-  constructor(private route: ActivatedRoute) {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.association = this.associations.find((assoc) => assoc.id === id);
+  ngOnInit(): void {
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.loadAssociation();
+  }
+
+  // Charger les détails de l'association depuis l'API
+  loadAssociation() {
+    this.http.get<any>(`${this.apiUrl}/${this.id}`).subscribe(
+      (data) => {
+        this.association = data;
+      },
+      (error) => {
+        console.error('Erreur lors du chargement des détails de l’association :', error);
+      }
+    );
   }
 }

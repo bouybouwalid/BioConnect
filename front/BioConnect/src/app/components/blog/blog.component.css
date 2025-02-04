@@ -1,100 +1,102 @@
+/* Conteneur principal */
 .container {
-    max-width: 1200px;
-    margin: auto;
+  padding: 20px;
+}
+
+/* Cartes de blogs */
+.blog-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 10px;
+  overflow: hidden;
+  background: white;
+}
+
+.blog-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Image de profil statique */
+.profile-image {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  padding: 15px;
+}
+
+/* Boutons */
+.btn {
+  font-weight: bold;
+}
+
+/* MODALE (POPUP) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  width: 50%;
+  max-width: 700px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: red;
+}
+
+/* Contenu du blog */
+.blog-content {
+  text-align: justify;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  
-  h2 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .text-muted {
-    font-size: 1rem;
-    color: #6c757d;
-  }
-  
-  .blog-card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .blog-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-  }
-  
-  .blog-image {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  .card-title {
-    color: #28a745;
-    font-size: 1.2rem;
-  }
-  
-  .card-text {
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-  }
-  
-  .btn {
-    font-size: 0.9rem;
-  }
-  
-  /* Modal Styling */
-  .modal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1050;
-  }
-  
-  .modal-dialog {
-    max-width: 700px;
-    width: 90%;
-  }
-  
+}
+
+/* Responsive */
+@media (max-width: 768px) {
   .modal-content {
-    border-radius: 10px;
+    width: 90%;
     padding: 20px;
-    background-color: #fff;
   }
-  
-  .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
+
+  .profile-image {
+    height: 120px;
   }
-  
-  .modal-title {
-    font-size: 1.5rem;
-    color: #28a745;
-  }
-  
-  .modal-body {
+
+  .blog-content {
     font-size: 1rem;
-    color: #333;
   }
-  
-  .modal-image {
-    width: 100%;
-    border-radius: 10px;
-  }
-  
-  .modal-footer {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
+}

@@ -1,59 +1,74 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
+  imports: [CommonModule, FormsModule]
 })
 export class ProductListComponent implements OnInit {
-  products = [
-    {
-      name: 'Tomates Bio',
-      imageUrl: 'assets/products/tomatoes.jpg',
-      category: 'Légumes',
-      association: 'BioLocal',
-      price: 3.5,
-    },
-    {
-      name: 'Pommes de Terre',
-      imageUrl: 'assets/products/potatoes.jpg',
-      category: 'Légumes',
-      association: 'Nature et Saveurs',
-      price: 2.0,
-    },
-    {
-      name: 'Miel Naturel',
-      imageUrl: 'assets/products/honey.jpg',
-      category: 'Produits Transformés',
-      association: 'Green Earth',
-      price: 8.0,
-    },
-    {
-      name: 'Confiture Maison',
-      imageUrl: 'assets/products/jam.jpg',
-      category: 'Produits Transformés',
-      association: 'Nature et Saveurs',
-      price: 5.0,
-    },
-  ];
+  apiUrlProducts = 'http://localhost:8080/api/produits';
+  apiUrlCategories = 'http://localhost:8080/api/categories';
+  products: any[] = [];
+  categories: any[] = [];
+  groupedProducts: { [category: string]: any[] } = {};
+  selectedProduct: any = null; // Stocke le produit sélectionné pour la pop-up
 
-  groupedProducts: { [category: string]: { name: string; imageUrl: string; category: string; association: string; price: number; }[] } = {};
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.groupProductsByCategory();
+    this.loadProducts();
+    this.loadCategories();
+  }
+
+  // Charger les produits depuis le backend
+  loadProducts() {
+    this.http.get<any[]>(this.apiUrlProducts).subscribe(
+      (data) => {
+        this.products = data;
+        this.groupProductsByCategory();
+      },
+      (error) => {
+        console.error('Erreur lors du chargement des produits :', error);
+      }
+    );
+  }
+
+  // Charger les catégories depuis le backend
+  loadCategories() {
+    this.http.get<any[]>(this.apiUrlCategories).subscribe(
+      (data) => {
+        this.categories = data;
+      },
+      (error) => {
+        console.error('Erreur lors du chargement des catégories :', error);
+      }
+    );
   }
 
   // Grouper les produits par catégorie
   private groupProductsByCategory(): void {
-    this.groupedProducts = this.products.reduce((acc: { [category: string]: { name: string; imageUrl: string; category: string; association: string; price: number; }[] }, product) => {
-      if (!acc[product.category]) {
-        acc[product.category] = [];
+    this.groupedProducts = this.products.reduce((acc: { [category: string]: any[] }, product) => {
+      const categoryName = product.categorie ? product.categorie.nom : 'Autres';
+      if (!acc[categoryName]) {
+        acc[categoryName] = [];
       }
-      acc[product.category].push(product);
+      acc[categoryName].push(product);
       return acc;
     }, {});
+  }
+
+  // Ouvrir la pop-up avec les détails du produit
+  openProductDetails(product: any) {
+    this.selectedProduct = product;
+  }
+
+  // Fermer la pop-up
+  closeProductDetails() {
+    this.selectedProduct = null;
   }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-contact',
@@ -10,19 +11,29 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./contact.component.css'],
 })
 export class ContactComponent {
+  apiUrl = 'http://localhost:8080/api/contacts';
+
   contactData = {
-    fullName: '',
+    nomComplet: '',
     email: '',
     message: '',
   };
 
+  constructor(private http: HttpClient) {}
+
   onSubmit() {
-    if (this.contactData.fullName && this.contactData.email && this.contactData.message) {
-      console.log('Message envoyé :', this.contactData);
-      alert('Votre message a été envoyé avec succès !');
-      this.contactData = { fullName: '', email: '', message: '' };
-    } else {
-      console.error('Formulaire invalide');
+    if (this.contactData.nomComplet && this.contactData.email && this.contactData.message) {
+      this.http.post(this.apiUrl, this.contactData).subscribe(
+        (response) => {
+          console.log('Message envoyé :', response);
+          alert('Votre message a été envoyé avec succès !');
+          this.contactData = { nomComplet: '', email: '', message: '' };
+        },
+        (error) => {
+          console.error('Erreur lors de l’envoi du message :', error);
+          alert('Une erreur est survenue lors de l’envoi du message.');
+        }
+      );
     }
   }
 }
