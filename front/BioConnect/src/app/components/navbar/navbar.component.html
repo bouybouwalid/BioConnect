@@ -45,6 +45,12 @@
           <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact</a>
         </li>
       </ul>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/cart">
+          🛒 Panier <span class="badge bg-success">{{ cartService.getCart().length }}</span>
+        </a>
+      </li>
+      
       <!-- Actions utilisateur -->
       <ul class="navbar-nav">
         <li class="nav-item">

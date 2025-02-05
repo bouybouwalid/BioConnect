@@ -1,0 +1,57 @@
+/* 🎨 Conteneur principal */
+.cart-container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 🎨 Style du tableau */
+  .table {
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .table-success {
+    background-color: #d4edda;
+  }
+  
+  /* 🎨 Boutons de quantité */
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .quantity-controls button {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    line-height: 1;
+    border-radius: 50%;
+  }
+  
+  .quantity {
+    margin: 0 10px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  /* 🎨 Total */
+  .total-price {
+    font-weight: bold;
+    color: #28a745;
+    margin-top: 20px;
+  }
+  
+  /* 🎨 Panier vide */
+  .empty-cart {
+    margin-top: 50px;
+  }
+  
+  .empty-cart-img {
+    width: 150px;
+    opacity: 0.7;
+  }
+  

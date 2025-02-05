@@ -14,16 +14,16 @@
             />
             <div class="card-body">
               <h5 class="card-title">{{ product.nom }}</h5>
-              <p class="card-text">
-                <strong>Association :</strong> {{ product.association?.nom }}
-              </p>
-              <p class="card-text text-success">
-                <strong>Prix :</strong> {{ product.prix | currency: 'EUR' }}
-              </p>
+              <p class="card-text"><strong>Association :</strong> {{ product.association?.nom }}</p>
+              <p class="card-text text-success"><strong>Prix :</strong> {{ product.prix | currency: 'EUR' }}</p>
+
+              <!-- Bouton Voir Détails -->
               <button class="btn btn-outline-success w-100" (click)="openProductDetails(product)">
                 Voir Détails
               </button>
-              <button class="btn btn-success w-100 mt-2">
+
+              <!-- Bouton Ajouter au panier -->
+              <button class="btn btn-success w-100 mt-2" (click)="addToCart(product)">
                 Ajouter au panier
               </button>
             </div>
@@ -36,7 +36,7 @@
 </div>
 
 <!-- POPUP (MODALE) -->
-<div *ngIf="selectedProduct" class="modal-overlay" (click)="closeProductDetails()">
+<div *ngIf="showModal" class="modal-overlay" (click)="closeProductDetails()">
   <div class="modal-content" (click)="$event.stopPropagation()">
     <button class="close-btn" (click)="closeProductDetails()">✖</button>
     <h3 class="text-success">{{ selectedProduct.nom }}</h3>
@@ -49,6 +49,10 @@
     <p><strong>Catégorie :</strong> {{ selectedProduct.categorie?.nom }}</p>
     <p><strong>Prix :</strong> {{ selectedProduct.prix | currency: 'EUR' }}</p>
     <p><strong>Description :</strong> {{ selectedProduct.details }}</p>
-    <button class="btn btn-success w-100 mt-3">Ajouter au panier</button>
+
+    <!-- Bouton Ajouter au panier -->
+    <button class="btn btn-success w-100 mt-3" (click)="addToCart(selectedProduct)">
+      Ajouter au panier
+    </button>
   </div>
 </div>

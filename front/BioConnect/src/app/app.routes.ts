@@ -7,7 +7,7 @@ import { UserProfileComponent } from './components/users/user-profile/user-profi
 import { ProductListComponent } from './components/products/product-list/product-list.component';
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 import { ProductFormComponent } from './components/products/product-form/product-form.component';
-import { CartComponent } from './components/orders/cart/cart.component';
+import { CartComponent } from './components/cart/cart.component';
 import { OrderListComponent } from './components/orders/order-list/order-list.component';
 import { OrderDetailsComponent } from './components/orders/order-details/order-details.component';
 import { EventListComponent } from './components/events/event-list/event-list.component';

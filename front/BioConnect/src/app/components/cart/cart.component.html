@@ -1,0 +1,28 @@
+<div class="container mt-5">
+    <h2 class="text-success">Votre Panier</h2>
+  
+    <div *ngIf="cartService.getCart().length === 0">
+      <p class="text-muted">Votre panier est vide.</p>
+    </div>
+  
+    <div *ngFor="let product of cartService.getCart()" class="row border-bottom py-3">
+      <div class="col-md-4">
+        <img [src]="product.imageUrl || 'assets/products/default.jpg'" class="img-fluid" />
+      </div>
+      <div class="col-md-5">
+        <h5>{{ product.nom }}</h5>
+        <p>{{ product.details }}</p>
+        <p><strong>Prix :</strong> {{ product.prix | currency: 'EUR' }}</p>
+      </div>
+      <div class="col-md-3">
+        <input type="number" [(ngModel)]="product.quantity" (change)="updateQuantity(product.id, product.quantity)" min="1" class="form-control" />
+        <button class="btn btn-danger btn-sm mt-2" (click)="removeProduct(product.id)">Supprimer</button>
+      </div>
+    </div>
+  
+    <hr />
+  
+    <h4>Total : {{ getTotal() | currency: 'EUR' }}</h4>
+    <button class="btn btn-success w-100 mt-3">Payer</button>
+  </div>
+  
