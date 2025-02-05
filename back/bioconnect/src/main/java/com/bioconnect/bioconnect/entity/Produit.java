@@ -1,6 +1,8 @@
 package com.bioconnect.bioconnect.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -22,7 +24,7 @@ public class Produit {
 
     @ManyToOne
     @JoinColumn(name = "association_id", nullable = false)
-    @JsonBackReference
+    @JsonManagedReference
     private Association association;
 
     @ManyToOne

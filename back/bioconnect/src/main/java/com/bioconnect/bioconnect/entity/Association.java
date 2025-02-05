@@ -1,5 +1,6 @@
 package com.bioconnect.bioconnect.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -24,7 +25,7 @@ public class Association {
     private User createur;
 
     @OneToMany(mappedBy = "association", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonBackReference
     private List<Produit> produits;
 
     public Association() {
@@ -76,7 +77,7 @@ public class Association {
     public void setCreateur(User createur) {
         this.createur = createur;
     }
-
+     
     public List<Produit> getProduits() {
         return produits;
     }
