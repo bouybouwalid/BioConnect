@@ -26,6 +26,8 @@ import { AssociationDashboardComponent } from './components/associations/dashboa
 import { OrdersComponent } from './components/associations/orders/orders.component';
 import { AdminComponent } from './components/users/admin/admin.component';
 import { AboutComponent } from './components/about/about.component';
+import { ContactMessagesComponent } from './components/contact-messages/contact-messages.component';
+
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -52,6 +54,7 @@ export const routes: Routes = [
   { path: 'profile/associations/create', component: CreateAssociationComponent }, // Créer une association
   { path: 'association/:id/dashboard', component: AssociationDashboardComponent }, // Tableau de bord d'une association
   { path: 'association/:id/orders', component: OrdersComponent }, // Commandes d'une association
+  { path: 'messages', component: ContactMessagesComponent },
 
   // Routes pour les superutilisateurs
   { path: 'admin/dashboard', component: AdminComponent }, // Tableau de bord admin

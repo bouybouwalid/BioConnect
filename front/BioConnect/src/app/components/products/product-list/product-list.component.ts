@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CartService } from '../../../services/cart.service'; // Importer CartService
+import { HttpClient } from '@angular/common/http';
+import { CartService } from '../../../services/cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -10,37 +11,57 @@ import { CartService } from '../../../services/cart.service'; // Importer CartSe
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  products: any[] = []; // Liste des produits chargés depuis le backend
+  apiUrl = 'http://localhost:8080/api/produits'; // 🔹 Lien vers l'API des produits
+  products: any[] = [];
+  groupedProducts: { [category: string]: any[] } = {};
   selectedProduct: any = null;
+  showModal: boolean = false;
 
-  constructor(private cartService: CartService) {}
+  constructor(private http: HttpClient, private cartService: CartService) {}
 
   ngOnInit(): void {
     this.loadProducts();
   }
 
-  // Charger les produits depuis l'API (à implémenter plus tard)
+  // Charger les produits depuis l'API
   loadProducts() {
-    // Simule les produits pour l'instant
-    this.products = [
-      { id: 1, nom: 'Tomates Bio', prix: 3.5, details: 'Cultivées sans pesticides', imageUrl: 'assets/products/tomatoes.jpg' },
-      { id: 2, nom: 'Pommes de Terre', prix: 2.0, details: 'Riches en goût', imageUrl: 'assets/products/potatoes.jpg' }
-    ];
+    this.http.get<any[]>(this.apiUrl).subscribe(
+      (data) => {
+        this.products = data;
+        this.groupProductsByCategory();
+      },
+      (error) => {
+        console.error('Erreur lors du chargement des produits :', error);
+      }
+    );
   }
 
-  // Ouvrir la modale d’un produit
+  // Grouper les produits par catégorie
+  private groupProductsByCategory(): void {
+    this.groupedProducts = this.products.reduce((acc: { [category: string]: any[] }, product) => {
+      if (!acc[product.categorie?.nom]) {
+        acc[product.categorie?.nom] = [];
+      }
+      acc[product.categorie?.nom].push(product);
+      return acc;
+    }, {});
+  }
+
+  // Ouvrir la pop-up des détails produit
   openProductDetails(product: any) {
     this.selectedProduct = product;
+    this.showModal = true;
   }
 
-  // Fermer la modale
+  // Fermer la pop-up
   closeProductDetails() {
     this.selectedProduct = null;
+    this.showModal = false;
   }
 
   // Ajouter un produit au panier
   addToCart(product: any) {
     this.cartService.addToCart(product);
-    alert(`${product.nom} ajouté au panier !`);
+    alert('Produit ajouté au panier !'); // 🔹 Afficher une alerte pour confirmer
   }
 }
