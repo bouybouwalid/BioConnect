@@ -28,7 +28,25 @@
 .btn-primary:hover {
   background-color: #218838;
 }
+
 .navbar-brand {
   font-weight: bold;
-  color: #28a745; /* Couleur verte pour refléter le thème biologique */
+  color: #28a745;
+}
+
+/* Style pour le menu utilisateur */
+.dropdown-menu {
+  min-width: 200px;
+}
+
+.dropdown-item {
+  font-size: 14px;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+.text-danger {
+  color: red !important;
 }

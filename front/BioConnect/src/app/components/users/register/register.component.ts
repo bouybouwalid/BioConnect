@@ -26,12 +26,13 @@ export class RegisterComponent {
 
   onSubmit() {
     this.authService.register(this.registerData).subscribe(
-      response => {
-        this.successMessage = 'Registration successful!';
+      (response: any) => {
+        console.log('Inscription réussie', response);
       },
-      error => {
-        this.errorMessage = 'Registration failed!';
+      (error: any) => {
+        console.error('Erreur lors de l’inscription', error);
       }
     );
+    
   }
 }

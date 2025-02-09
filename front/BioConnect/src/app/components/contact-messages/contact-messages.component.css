@@ -1,0 +1,23 @@
+.container {
+    max-width: 900px;
+    margin: auto;
+  }
+  
+  .table th, .table td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .pagination {
+    margin-top: 15px;
+  }
+  
+  .page-item .page-link {
+    color: green;
+  }
+  
+  .page-item.active .page-link {
+    background-color: green;
+    border-color: green;
+  }
+  
