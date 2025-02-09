@@ -37,6 +37,7 @@ export class AuthService {
 
   // ✅ Sauvegarde du token et extraction des infos utilisateur
   saveToken(token: string) {
+    console.log('Sauvegarde du token dans le localStorage');
     localStorage.setItem('authToken', token);
     this.decodeUserFromToken(token);
   }
@@ -72,10 +73,21 @@ export class AuthService {
   // ✅ Décoder l'utilisateur à partir du token JWT
   private decodeUserFromToken(token: string) {
     try {
-      const decoded: UserPayload = jwtDecode(token);
-      this.userSubject.next(decoded);
+      const decoded: any = jwtDecode(token);
+      console.log('Token décodé avec téléphone:', decoded);
+  
+      const userPayload: UserPayload = {
+        id: decoded.id,
+        nom: decoded.nom,
+        prenom: decoded.prenom,
+        email: decoded.email,
+        telephone: decoded.telephone, // Récupération du téléphone
+        roles: decoded.roles || []
+      };
+  
+      this.userSubject.next(userPayload);
     } catch (error) {
-      console.error('Erreur de décodage du token :', error);
+      console.error('Erreur de décodage:', error);
       this.logout();
     }
   }
@@ -83,4 +95,9 @@ export class AuthService {
     register(user: RegisterRequest): Observable<any> {
       return this.http.post<any>(`${this.apiUrl}/inscription`, user);
     }
+    // Ajoutez cette méthode
+getCurrentUser(): UserPayload | null {
+  return this.userSubject.getValue();
+}
+
 }

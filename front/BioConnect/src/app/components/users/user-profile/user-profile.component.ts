@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { AuthService } from '../../../services/auth.service';
+import { UserPayload } from '../../../models/user-payload.model';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-user-profile',
   standalone: true,
@@ -12,7 +14,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   imports: [CommonModule, FormsModule, RouterModule] // Utilisez CommonModule au lieu de BrowserModule
 })
 export class UserProfileComponent {
-  user = {
+
+  user: UserPayload | null = null; // Remplacez l'objet user statique
+  private userSub!: Subscription;
+  newBlog = { title: '', domain: '', text: '' };
+  user2 = {
     name: 'John Doe',
     email: 'john.doe@example.com',
     phone: '123-456-7890',
@@ -22,10 +28,15 @@ export class UserProfileComponent {
     ]
   };
 
-  newBlog = { title: '', domain: '', text: '' };
-
-  constructor(private modalService: NgbModal) {}
-
+  constructor(private modalService: NgbModal,    private authService: AuthService  ) {}
+  ngOnInit() {
+    this.userSub = this.authService.user$.subscribe(user => {
+      this.user = user;
+    });
+  }
+  ngOnDestroy() {
+    this.userSub?.unsubscribe();
+  }
   openModal(content: any) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
   }

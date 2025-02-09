@@ -3,5 +3,6 @@ export interface UserPayload {
   nom: string;
   prenom: string;
   email: string;
+  telephone: string; // Ajouter cette ligne
   roles: string[];
 }
