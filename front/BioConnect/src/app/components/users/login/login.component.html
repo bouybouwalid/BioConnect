@@ -6,7 +6,13 @@
         <h2 class="text-success">Connexion à BioConnect</h2>
       </div>
       <hr />
-  
+      <!-- Messages d'état -->
+      <div *ngIf="successMessage" class="alert alert-success mt-3">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+        {{ errorMessage }}
+      </div>
       <!-- Formulaire -->
       <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
         <div class="mb-3">

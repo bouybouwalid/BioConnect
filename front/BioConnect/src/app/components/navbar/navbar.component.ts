@@ -1,17 +1,18 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { UserPayload } from '../../models/user-payload.model';
 import { Subscription } from 'rxjs';
-import { CommonModule } from '@angular/common'; // Importez CommonModule
-import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { CartService } from '../../services/cart.service';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css',
-  imports: [RouterLink,CommonModule],
+  styleUrls: ['./navbar.component.css'],
+  imports: [RouterLink, CommonModule, NgbDropdownModule]
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   private authService = inject(AuthService);
@@ -21,18 +22,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private userSubscription!: Subscription;
 
   ngOnInit() {
-    this.userSubscription = this.authService.user$.subscribe((user) => {
+    this.userSubscription = this.authService.user$.subscribe(user => {
       this.user = user;
     });
   }
 
   logout() {
     this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
   ngOnDestroy() {
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
-    }
+    this.userSubscription?.unsubscribe();
   }
 }

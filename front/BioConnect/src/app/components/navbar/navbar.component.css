@@ -1,52 +1,54 @@
-/* Logo */
 .logo {
-  width: 10%;
+  width: 40px;
   height: auto;
 }
 
-/* Bouton hamburger personnalisé */
-.navbar-toggler.custom-toggler {
-  border-color: #28a745;
+.nav-link {
+  transition: all 0.3s ease;
 }
 
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28220,53,69,1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-}
-
-/* Lien actif */
 .nav-link.active {
-  font-weight: bold;
+  font-weight: 600;
   color: #28a745 !important;
+  border-bottom: 2px solid #28a745;
 }
 
-/* Bouton d'inscription */
-.btn-primary {
-  background-color: #28a745;
-  border: none;
+.btn-link.text-success {
+  font-weight: 500;
+  transition: transform 0.2s ease;
 }
 
-.btn-primary:hover {
-  background-color: #218838;
+.btn-link.text-success:hover {
+  color: #218838 !important;
+  transform: translateY(-1px);
 }
 
-.navbar-brand {
-  font-weight: bold;
-  color: #28a745;
-}
-
-/* Style pour le menu utilisateur */
 .dropdown-menu {
+  border: none;
+  box-shadow: 0 0.5rem 1rem rgba(40, 167, 69, 0.1);
   min-width: 200px;
 }
 
 .dropdown-item {
-  font-size: 14px;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
 }
 
 .dropdown-item:hover {
   background-color: #f8f9fa;
+  padding-left: 1.75rem;
 }
 
-.text-danger {
-  color: red !important;
+.dropdown-divider {
+  border-color: rgba(40, 167, 69, 0.1);
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.25);
+}
+
+.bi {
+  width: 1.2em;
+  height: 1.2em;
 }
