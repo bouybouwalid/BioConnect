@@ -1,4 +1,9 @@
 package com.bioconnect.bioconnect.controller;
+import com.bioconnect.bioconnect.service.JwtService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,15 +29,30 @@ public class AuthController {
         );
         return ResponseEntity.ok(newUser);
     }
+    @Autowired
+    private JwtService jwtService;
 
-    @PostMapping("/connexion")
-    public ResponseEntity<String> connexion(@RequestBody UserConnexionRequest request) {
-        User user = userService.trouverParEmail(request.getEmail());
-        if (user != null) {
-            // Ici, vous pouvez comparer le mot de passe encodé avec la méthode passwordEncoder.matches()
-            // Selon la logique, renvoyez un token ou un message quelconque
-            return ResponseEntity.ok("Connexion réussie !");
-        }
-        return ResponseEntity.badRequest().body("Échec de la connexion : email ou mot de passe invalide.");
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+@PostMapping("/connexion")
+public ResponseEntity<Map<String, String>> connexion(@RequestBody UserConnexionRequest request) {
+    User user = userService.trouverParEmail(request.getEmail());
+    if (user != null && passwordEncoder.matches(request.getMotDePasse(), user.getMotDePasse())) {
+        String token = jwtService.generateToken(user);
+        
+        // Créer un JSON avec le token
+        Map<String, String> response = new HashMap<>();
+        response.put("token", token);
+        
+        return ResponseEntity.ok(response); // ✅ Retourne un JSON { "token": "eyJhbGciOi..." }
     }
+    
+    // Retourner une réponse JSON en cas d'échec
+    Map<String, String> errorResponse = new HashMap<>();
+    errorResponse.put("error", "Échec de la connexion : email ou mot de passe invalide.");
+    
+    return ResponseEntity.badRequest().body(errorResponse);
 }
+
+    
+} 

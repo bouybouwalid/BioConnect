@@ -1,10 +1,14 @@
 package com.bioconnect.bioconnect.entity;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import jakarta.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {  // Implémentation de UserDetails
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,8 +22,7 @@ public class User {
 
     private String motDePasse;
 
-    public User() {
-    }
+    public User() {}
 
     public User(Long id, String nom, String prenom, String email, String telephone, String motDePasse) {
         this.id = id;
@@ -76,5 +79,41 @@ public class User {
 
     public void setMotDePasse(String motDePasse) {
         this.motDePasse = motDePasse;
+    }
+
+    // Méthodes de UserDetails (à implémenter)
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.emptyList(); // Pas de rôles pour le moment
+    }
+
+    @Override
+    public String getPassword() {
+        return motDePasse;
+    }
+
+    @Override
+    public String getUsername() {
+        return email; // L'email est utilisé comme identifiant
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

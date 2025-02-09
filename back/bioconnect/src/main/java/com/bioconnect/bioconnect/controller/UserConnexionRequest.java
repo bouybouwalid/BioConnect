@@ -1,17 +1,10 @@
 package com.bioconnect.bioconnect.controller;
 
 public class UserConnexionRequest {
-
     private String email;
     private String motDePasse;
 
-    public UserConnexionRequest() {
-    }
-
-    public UserConnexionRequest(String email, String motDePasse) {
-        this.email = email;
-        this.motDePasse = motDePasse;
-    }
+    public UserConnexionRequest() {}
 
     public String getEmail() {
         return email;
