@@ -3,14 +3,37 @@
 
   <div class="row">
     <div class="col-md-4 mb-4" *ngFor="let event of events">
-      <div class="card">
-        <img [src]="event.image" class="card-img-top" alt="{{ event.title }}">
+      <div class="card event-card">
         <div class="card-body">
           <h5 class="card-title">{{ event.title }}</h5>
-          <p><strong>Lieu :</strong> {{ event.location }}</p>
-          <p><strong>Date :</strong> {{ event.date | date:'longDate' }}</p>
+          <p><strong>Association :</strong> {{ event.association?.nom }}</p>
+          <p><strong>Adresse :</strong> {{ event.address }}</p>
+          <p><strong>Date :</strong> {{ event.date | date: 'longDate' }}</p>
           <p>{{ event.description | slice: 0:100 }}...</p>
+          <button class="btn btn-outline-success w-100 mt-2" (click)="openDetails(event)">
+            Voir Détails
+          </button>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal fade show d-block" *ngIf="showModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">{{ selectedEvent?.title }}</h5>
+      </div>
+      <div class="modal-body">
+        <p><strong>Association :</strong> {{ selectedEvent?.association?.nom }}</p>
+        <p><strong>Adresse :</strong> {{ selectedEvent?.address }}</p>
+        <p><strong>Date :</strong> {{ selectedEvent?.date | date: 'longDate' }}</p>
+        <p><strong>Description :</strong> {{ selectedEvent?.description }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Fermer</button>
       </div>
     </div>
   </div>

@@ -1,0 +1,55 @@
+/* 🌱 Animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+/* ✨ Effet au survol */
+.btn-success:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+/* 🗣️ Témoignages */
+.testimonial {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-style: italic;
+}
+
+
+/* 🌱 Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-out forwards;
+  }
+  
+  /* 🎠 Galerie */
+  .carousel-inner img {
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  /* ✨ Effet au survol */
+  .btn-success:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+  }
+  
+  /* 📜 Animation Keyframes */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

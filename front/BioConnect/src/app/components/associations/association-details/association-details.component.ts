@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+
+declare var ymaps: any; // Déclare l'objet Yandex Maps
 
 @Component({
   selector: 'app-association-details',
@@ -10,7 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./association-details.component.css'],
   imports: [CommonModule]
 })
-export class AssociationDetailsComponent implements OnInit {
+export class AssociationDetailsComponent implements OnInit, AfterViewInit {
   apiUrl = 'http://localhost:8080/api/associations';
   association: any = null;
   id: number = 0;
@@ -22,15 +24,43 @@ export class AssociationDetailsComponent implements OnInit {
     this.loadAssociation();
   }
 
-  // Charger les détails de l'association depuis l'API
+  ngAfterViewInit(): void {
+    if (this.association) {
+      this.initMap();
+    }
+  }
+
+  // Charger les détails de l'association
   loadAssociation() {
     this.http.get<any>(`${this.apiUrl}/${this.id}`).subscribe(
       (data) => {
         this.association = data;
+        this.initMap(); // Initialise la carte une fois les données chargées
       },
       (error) => {
         console.error('Erreur lors du chargement des détails de l’association :', error);
       }
     );
+  }
+
+  initMap() {
+    if (!ymaps) {
+      console.error("L'API Yandex Maps n'est pas chargée !");
+      return;
+    }
+
+    ymaps.ready(() => {
+      const map = new ymaps.Map('map-container', {
+        center: [this.association.latitude, this.association.longitude],
+        zoom: 10
+      });
+
+      const placemark = new ymaps.Placemark(
+        [this.association.latitude, this.association.longitude],
+        { balloonContent: `<strong>${this.association.nom}</strong><br>${this.association.lieu}` }
+      );
+
+      map.geoObjects.add(placemark);
+    });
   }
 }

@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 import { EventService, Event } from '../../../services/event.service';
 
 @Component({
   selector: 'app-event-list',
   standalone: true,
-  imports: [CommonModule], // Ajoutez CommonModule ici
+  imports: [CommonModule],
   templateUrl: './event-list.component.html',
   styleUrls: ['./event-list.component.css'],
 })
@@ -30,5 +29,15 @@ export class EventListComponent implements OnInit {
         console.error('Erreur de chargement des événements :', error);
       }
     );
+  }
+
+  openDetails(event: Event) {
+    this.selectedEvent = event;
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+    this.selectedEvent = null;
   }
 }

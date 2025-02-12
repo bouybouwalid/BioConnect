@@ -6,16 +6,16 @@ export interface Event {
   id: number;
   title: string;
   description: string;
-  location: string;
+  address: string;
   date: string;
-  image: string;
+  association: { id: number; nom: string };
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class EventService {
-  private apiUrl = 'http://localhost:8080/events';
+  private apiUrl = 'http://localhost:8080/api/events';
 
   constructor(private http: HttpClient) {}
 

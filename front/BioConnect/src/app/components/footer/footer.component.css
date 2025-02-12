@@ -1,7 +1,11 @@
 .footer {
     border-top: 1px solid #eaeaea;
     background-color: #f8f9fa; /* Couleur de fond claire */
+    margin-top: 500px; /* Ajuste cette valeur selon l’espace désiré */
+    position: relative;
+
   }
+  
   
   .footer h5 {
     font-weight: bold;

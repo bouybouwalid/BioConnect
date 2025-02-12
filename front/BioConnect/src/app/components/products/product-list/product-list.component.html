@@ -8,7 +8,7 @@
         <div class="col-md-4 mb-4" *ngFor="let product of category.value">
           <div class="card product-card">
             <img
-              [src]="product.imageUrl || 'assets/products/default.jpg'"
+            src="assets/prod.png"
               alt="Image du produit"
               class="card-img-top product-image"
             />
@@ -41,7 +41,7 @@
     <button class="close-btn" (click)="closeProductDetails()">✖</button>
     <h3 class="text-success">{{ selectedProduct.nom }}</h3>
     <img
-      [src]="selectedProduct.imageUrl || 'assets/products/default.jpg'"
+    src="assets/prod.png"
       alt="Image du produit"
       class="product-detail-image"
     />
