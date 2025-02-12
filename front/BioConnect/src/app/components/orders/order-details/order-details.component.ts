@@ -1,31 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { OrderService } from '../../../services/order.service';
 
 @Component({
   selector: 'app-order-details',
   standalone: true,
   templateUrl: './order-details.component.html',
   styleUrls: ['./order-details.component.css'],
-  imports: [CommonModule,RouterLink] // Ajoutez CommonModule ici
+  imports: [CommonModule, RouterLink]
 })
 export class OrderDetailsComponent {
-  orderId: number;
+  orderId!: number;
   order: any;
+  private route = inject(ActivatedRoute);
+  private orderService = inject(OrderService);
 
-  constructor(private route: ActivatedRoute) {
+  ngOnInit() {
     this.orderId = Number(this.route.snapshot.paramMap.get('id'));
+    this.loadOrderDetails();
+  }
 
-    // Simuler les données de la commande
-    this.order = {
-      id: this.orderId,
-      date: new Date('2023-12-01'),
-      total: 75.5,
-      items: [
-        { name: 'Produit 1', price: 25.0, quantity: 1 },
-        { name: 'Produit 2', price: 15.0, quantity: 2 },
-        { name: 'Produit 3', price: 10.0, quantity: 1 }
-      ]
-    };
+  loadOrderDetails() {
+    this.orderService.getOrderDetails(this.orderId).subscribe(
+      (data) => {
+        this.order = data;
+      },
+      (error) => {
+        console.error("Erreur lors du chargement des détails de la commande :", error);
+      }
+    );
   }
 }

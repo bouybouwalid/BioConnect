@@ -4,8 +4,8 @@
     <div class="orders-section mt-4">
       <div class="order-card" *ngFor="let order of orders">
         <p><strong>Commande #{{ order.id }}</strong></p>
-        <p><strong>Date :</strong> {{ order.date | date }}</p>
-        <p><strong>Total :</strong> {{ order.total | currency:'EUR' }}</p>
+        <p><strong>Date :</strong> {{ order.dateCommande | date }}</p>
+        <p><strong>Total :</strong> {{ order.montantTotal | currency:'EUR' }}</p>
         <button class="btn btn-outline-primary btn-sm" [routerLink]="'/orders/' + order.id">
           Voir les détails
         </button>

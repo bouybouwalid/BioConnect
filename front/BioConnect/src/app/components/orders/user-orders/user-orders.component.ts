@@ -1,18 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { OrderService } from '../../../services/order.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-user-orders',
   standalone: true,
   templateUrl: './user-orders.component.html',
   styleUrls: ['./user-orders.component.css'],
-  imports: [CommonModule, RouterModule] // Ajoutez CommonModule et RouterModule ici
+  imports: [CommonModule, RouterModule]
 })
 export class UserOrdersComponent {
-  orders = [
-    { id: 1, date: new Date('2023-12-01'), total: 45.5 },
-    { id: 2, date: new Date('2023-12-15'), total: 30.0 },
-    { id: 3, date: new Date('2024-01-05'), total: 60.75 },
-  ];
+  orders: any[] = [];
+  private orderService = inject(OrderService);
+  private authService = inject(AuthService);
+
+  ngOnInit() {
+    const user = this.authService.getCurrentUser();
+    if (user) {
+      this.orderService.getUserOrders(user.id).subscribe(
+        (data) => {
+          this.orders = data;
+        },
+        (error) => {
+          console.error("Erreur lors du chargement des commandes :", error);
+        }
+      );
+    }
+  }
 }
