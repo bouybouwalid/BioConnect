@@ -24,7 +24,7 @@ public class Produit {
 
     @ManyToOne
     @JoinColumn(name = "association_id", nullable = false)
-    @JsonManagedReference
+    @JsonBackReference
     private Association association;
 
     @ManyToOne
