@@ -99,5 +99,9 @@ export class AuthService {
 getCurrentUser(): UserPayload | null {
   return this.userSubject.getValue();
 }
+getUserId(): number | null {
+  const user = this.getCurrentUser();
+  return user ? user.id : null;
+}
 
 }
